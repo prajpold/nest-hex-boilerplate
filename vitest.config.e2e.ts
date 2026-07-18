@@ -1,6 +1,5 @@
 // vitest.config.e2e.ts
 import swc from "unplugin-swc";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -13,5 +12,8 @@ export default defineConfig({
     fileParallelism: false,
     pool: "forks",
   },
-  plugins: [tsconfigPaths(), swc.vite({ module: { type: "es6" } })],
+  resolve: {
+    tsconfigPaths: true,
+  },
+  plugins: [swc.vite({ module: { type: "es6" } })],
 });

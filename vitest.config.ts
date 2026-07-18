@@ -1,5 +1,4 @@
 import swc from "unplugin-swc";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -14,8 +13,10 @@ export default defineConfig({
       exclude: ["**/*.module.ts", "**/main.ts", "**/*.dto.ts", "**/*.orm-entity.ts", "test/**"],
     },
   },
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
-    tsconfigPaths(),
     swc.vite({
       module: { type: "es6" },
     }),
