@@ -1,5 +1,5 @@
 import swc from "unplugin-swc";
-import tsconfigPaths from "vitest-tsconfig-paths";
+import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -15,7 +15,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    tsconfigPaths(), // rozwiązuje @shared/*, @modules/* z tsconfig.json
+    tsconfigPaths(),
     swc.vite({
       module: { type: "es6" },
     }),

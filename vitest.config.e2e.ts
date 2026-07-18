@@ -1,6 +1,6 @@
 // vitest.config.e2e.ts
 import swc from "unplugin-swc";
-import tsconfigPaths from "vitest-tsconfig-paths";
+import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
