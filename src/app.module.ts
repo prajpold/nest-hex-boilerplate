@@ -1,10 +1,12 @@
 import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
 import appConfig from "@shared/config/app.config";
 import authConfig from "@shared/config/auth.config";
 import databaseConfig from "@shared/config/database.config";
 import { validateEnv } from "@shared/config/env.validation";
+import { buildTypeOrmOptions } from "@shared/infrastructure/database/typeorm.config";
 
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
@@ -18,6 +20,10 @@ import { AppService } from "./app.service";
       validationOptions: {
         abortEarly: false,
       },
+    }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => buildTypeOrmOptions(configService),
     }),
   ],
   controllers: [AppController],
