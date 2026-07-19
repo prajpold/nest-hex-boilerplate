@@ -1,8 +1,13 @@
 {
   "plugins": ["typescript", "import"],
+  "options": {
+    "typeAware": true,
+    "typeCheck": true
+  },
   "rules": {
     "typescript/no-explicit-any": "error",
-    "import/no-cycle": "error"
+    "import/no-cycle": "error",
+    "no-restricted-imports": ["error", { "patterns": ["../*"] }]
   },
   "ignorePatterns": ["dist", "node_modules"]
 }

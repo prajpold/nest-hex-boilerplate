@@ -16,6 +16,7 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
+  oxc: false,
   plugins: [
     swc.vite({
       module: { type: "es6" },
