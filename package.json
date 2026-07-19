@@ -18,7 +18,12 @@
     "test:watch": "vitest --config vitest.config.ts",
     "test:e2e": "vitest run --config vitest.config.e2e.ts",
     "test:cov": "vitest run --config vitest.config.ts --coverage",
-    "prepare": "husky"
+    "prepare": "husky",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/shared/infrastructure/database/data-source.ts",
+    "migration:create": "typeorm-ts-node-commonjs migration:create",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/shared/infrastructure/database/data-source.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/shared/infrastructure/database/data-source.ts",
+    "migration:show": "typeorm-ts-node-commonjs migration:show -d src/shared/infrastructure/database/data-source.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
