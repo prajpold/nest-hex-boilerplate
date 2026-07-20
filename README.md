@@ -122,6 +122,11 @@ The API will be available at `http://localhost:3000` (or whatever `PORT`/`API_PR
 | `npm run migration:show`               | List applied/pending migrations                                 |
 | `npm run seed:run`                     | Discover and run all `*.seeder.ts` files under `src/modules/**` |
 
+## Test Conventions
+
+- Keep unit tests next to the code they cover, using the `*.spec.ts` suffix (for example, `src/shared/domain/entity-id.vo.spec.ts`). They run with `npm run test`.
+- Keep integration and end-to-end tests in `test/`, using the `*.e2e-spec.ts` suffix. They run with `npm run test:e2e`.
+
 ## Working with the Database
 
 - **Never** use `synchronize: true`. All schema changes go through migrations.
