@@ -1,9 +1,9 @@
 import { Inject, NotFoundException } from "@nestjs/common";
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 
-import { UserDto } from "@modules/user/application/dto/user.dto";
-import { type UserRepository } from "@modules/user/domain/ports/user.repository";
-import { USER_REPOSITORY } from "@modules/user/user.tokens";
+import { UserDto } from "@modules/users/application/dto/user.dto";
+import { type UserRepository } from "@modules/users/domain/ports/user.repository";
+import { USER_REPOSITORY } from "@modules/users/users.tokens";
 
 import { GetUserByIdQuery } from "./get-user-by-id.query";
 

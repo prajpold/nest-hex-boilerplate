@@ -1,5 +1,5 @@
-import { User } from "@modules/user/domain/models/user.aggregate";
-import { UserId } from "@modules/user/domain/value-objects/user-id.vo";
+import { User } from "@modules/users/domain/models/user.aggregate";
+import { UserId } from "@modules/users/domain/value-objects/user-id.vo";
 
 export class UserDto {
   id!: UserId;

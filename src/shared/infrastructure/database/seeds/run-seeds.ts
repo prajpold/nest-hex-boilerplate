@@ -9,15 +9,19 @@ import { Seeder } from "./seeder.interface";
 type SeederConstructor = new () => Seeder;
 
 async function discoverSeeders(): Promise<SeederConstructor[]> {
-  const pattern = path.join(__dirname, "../../../modules/**/*.seeder.{ts,js}").replace(/\\/g, "/");
+  const pattern = path
+    .join(__dirname, "../../../../modules/**/*.seeder.{ts,js}")
+    .replace(/\\/g, "/");
   const files = (await fg(pattern, { absolute: true })).sort(); // alfabetycznie — patrz konwencja niżej
 
   const seederClasses: SeederConstructor[] = [];
 
   for (const file of files) {
-    const module = await import(file);
+    // `tsconfig-paths/register` resolves project aliases for CommonJS imports.
+    // Native dynamic `import()` bypasses that hook, so seeders using aliases fail.
+    const seederModule: Record<string, unknown> = require(file);
 
-    for (const exported of Object.values(module)) {
+    for (const exported of Object.values(seederModule)) {
       const isSeederClass =
         typeof exported === "function" && typeof exported.prototype?.run === "function";
 

@@ -1,9 +1,9 @@
 import { AggregateRoot } from "@nestjs/cqrs";
 
-import { UserRegisteredEvent } from "@modules/user/domain/events/user-registered.event";
-import { Email } from "@modules/user/domain/value-objects/email.vo";
-import { HashedPassword } from "@modules/user/domain/value-objects/hashed-password.vo";
-import { UserId } from "@modules/user/domain/value-objects/user-id.vo";
+import { UserRegisteredEvent } from "@modules/users/domain/events/user-registered.event";
+import { Email } from "@modules/users/domain/value-objects/email.vo";
+import { HashedPassword } from "@modules/users/domain/value-objects/hashed-password.vo";
+import { UserId } from "@modules/users/domain/value-objects/user-id.vo";
 
 export class User extends AggregateRoot {
   private constructor(

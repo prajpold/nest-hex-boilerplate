@@ -1,14 +1,14 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 
-import { type PasswordHasherPort } from "@modules/user/application/ports/password-hasher.port";
-import { UserAlreadyExistsError } from "@modules/user/domain/errors/user-already-exists.error";
-import { User } from "@modules/user/domain/models/user.aggregate";
-import { type UserRepository } from "@modules/user/domain/ports/user.repository";
-import { Email } from "@modules/user/domain/value-objects/email.vo";
-import { HashedPassword } from "@modules/user/domain/value-objects/hashed-password.vo";
-import { UserId } from "@modules/user/domain/value-objects/user-id.vo";
-import { PASSWORD_HASHER, USER_REPOSITORY } from "@modules/user/user.tokens";
+import { type PasswordHasherPort } from "@modules/users/application/ports/password-hasher.port";
+import { UserAlreadyExistsError } from "@modules/users/domain/errors/user-already-exists.error";
+import { User } from "@modules/users/domain/models/user.aggregate";
+import { type UserRepository } from "@modules/users/domain/ports/user.repository";
+import { Email } from "@modules/users/domain/value-objects/email.vo";
+import { HashedPassword } from "@modules/users/domain/value-objects/hashed-password.vo";
+import { UserId } from "@modules/users/domain/value-objects/user-id.vo";
+import { PASSWORD_HASHER, USER_REPOSITORY } from "@modules/users/users.tokens";
 
 import { RegisterUserCommand } from "./register-user.command";
 

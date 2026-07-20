@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { UsersModule } from "@modules/users/users.module";
 import appConfig from "@shared/config/app.config";
 import authConfig from "@shared/config/auth.config";
 import databaseConfig from "@shared/config/database.config";
@@ -13,6 +14,7 @@ import { AppService } from "./app.service";
 
 @Module({
   imports: [
+    UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [appConfig, databaseConfig, authConfig],
