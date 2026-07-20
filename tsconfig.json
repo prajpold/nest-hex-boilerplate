@@ -25,6 +25,7 @@
     "paths": {
       "@shared/*": ["./src/shared/*"],
       "@modules/*": ["./src/modules/*"],
+      "~/*": ["./*"],
     },
     "types": ["node"],
   },
