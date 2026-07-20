@@ -1,0 +1,41 @@
+import { Inject } from "@nestjs/common";
+import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
+
+import { type PasswordHasherPort } from "@modules/user/application/ports/password-hasher.port";
+import { UserAlreadyExistsError } from "@modules/user/domain/errors/user-already-exists.error";
+import { User } from "@modules/user/domain/models/user.aggregate";
+import { type UserRepository } from "@modules/user/domain/ports/user.repository";
+import { Email } from "@modules/user/domain/value-objects/email.vo";
+import { HashedPassword } from "@modules/user/domain/value-objects/hashed-password.vo";
+import { UserId } from "@modules/user/domain/value-objects/user-id.vo";
+import { PASSWORD_HASHER, USER_REPOSITORY } from "@modules/user/user.tokens";
+
+import { RegisterUserCommand } from "./register-user.command";
+
+@CommandHandler(RegisterUserCommand)
+export class RegisterUserHandler implements ICommandHandler<RegisterUserCommand> {
+  constructor(
+    @Inject(USER_REPOSITORY) private readonly userRepository: UserRepository,
+    @Inject(PASSWORD_HASHER) private readonly passwordHasher: PasswordHasherPort,
+    private readonly publisher: EventPublisher,
+  ) {}
+
+  async execute(command: RegisterUserCommand): Promise<UserId> {
+    const email = Email.create(command.email);
+
+    const existing = await this.userRepository.findByEmail(email);
+    if (existing) {
+      throw new UserAlreadyExistsError(command.email);
+    }
+
+    const hashedValue = await this.passwordHasher.hash(command.plainPassword);
+    const password = HashedPassword.fromHash(hashedValue);
+
+    const user = this.publisher.mergeObjectContext(User.register(email, password));
+
+    await this.userRepository.save(user);
+    user.commit();
+
+    return user.userId;
+  }
+}
