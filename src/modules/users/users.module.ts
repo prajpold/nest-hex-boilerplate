@@ -21,5 +21,6 @@ import { PASSWORD_HASHER, USER_REPOSITORY } from "@modules/users/users.tokens";
     { provide: USER_REPOSITORY, useClass: UserTypeOrmRepository },
     { provide: PASSWORD_HASHER, useClass: BcryptPasswordHasher },
   ],
+  exports: [USER_REPOSITORY, PASSWORD_HASHER],
 })
 export class UsersModule {}
