@@ -2,6 +2,8 @@ import { ValidationPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 
+import { ProblemDetailsFilter } from "@shared/infrastructure/http/filters/problem-details.filter";
+
 import { AppModule } from "./app.module";
 import { setupSwagger } from "./shared/infrastructure/http/swagger.setup";
 
@@ -17,6 +19,8 @@ async function bootstrap() {
   const isProduction = config.get<string>("app.env") === "production";
 
   setupSwagger(app, isProduction);
+
+  app.useGlobalFilters(new ProblemDetailsFilter());
 
   await app.listen(port ?? 3000);
 }
