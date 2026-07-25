@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { AuthModule } from "@modules/auth/auth.module";
+import { PermissionsModule } from "@modules/permissions/permissions.module";
 import { UsersModule } from "@modules/users/users.module";
 import appConfig from "@shared/config/app.config";
 import authConfig from "@shared/config/auth.config";
@@ -17,6 +18,7 @@ import { AppService } from "./app.service";
   imports: [
     UsersModule,
     AuthModule,
+    PermissionsModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [appConfig, databaseConfig, authConfig],
