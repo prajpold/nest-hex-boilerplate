@@ -13,6 +13,7 @@ import authConfig from "@shared/config/auth.config";
 import databaseConfig from "@shared/config/database.config";
 import { validateEnv } from "@shared/config/env.validation";
 import { buildTypeOrmOptions } from "@shared/infrastructure/database/typeorm.config";
+import { HealthModule } from "@shared/infrastructure/health/health.module";
 
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
@@ -34,6 +35,7 @@ import { AppService } from "./app.service";
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => buildTypeOrmOptions(configService),
     }),
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [
