@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { PermissionsModule } from "@modules/permissions/permissions.module";
 import { RegisterUserHandler } from "@modules/users/application/commands/register-user/register-user.handler";
 import { GetUserByIdHandler } from "@modules/users/application/queries/get-user-by-id/get-user-by-id.handler";
 import { ListUsersHandler } from "@modules/users/application/queries/list-users/list-users.handler";
@@ -12,7 +13,7 @@ import { BcryptPasswordHasher } from "@modules/users/infrastructure/security/bcr
 import { PASSWORD_HASHER, USER_REPOSITORY } from "@modules/users/users.tokens";
 
 @Module({
-  imports: [CqrsModule, TypeOrmModule.forFeature([UserOrmEntity])],
+  imports: [CqrsModule, PermissionsModule, TypeOrmModule.forFeature([UserOrmEntity])],
   controllers: [UsersController],
   providers: [
     RegisterUserHandler,

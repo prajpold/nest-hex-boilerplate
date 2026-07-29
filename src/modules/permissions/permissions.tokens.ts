@@ -1,1 +1,2 @@
 export const PERMISSION_CHECKER = Symbol("PERMISSION_CHECKER");
+export const ROLE_ASSIGNER = Symbol("ROLE_ASSIGNER");
