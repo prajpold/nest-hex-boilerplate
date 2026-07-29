@@ -2,6 +2,12 @@ node_modules
 dist
 .git
 .env
+.env.example
 *.log
 coverage
 .vscode
+test
+*.spec.ts
+*.e2e-spec.ts
+docker-compose.yml
+Dockerfile

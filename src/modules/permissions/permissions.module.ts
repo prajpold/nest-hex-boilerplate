@@ -14,6 +14,6 @@ import { PERMISSION_CHECKER, ROLE_ASSIGNER } from "@modules/permissions/permissi
     { provide: PERMISSION_CHECKER, useClass: TypeOrmPermissionChecker },
     { provide: ROLE_ASSIGNER, useClass: TypeOrmRoleAssigner },
   ],
-  exports: [PERMISSION_CHECKER],
+  exports: [PERMISSION_CHECKER, ROLE_ASSIGNER],
 })
 export class PermissionsModule {}
